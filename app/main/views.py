@@ -1,7 +1,8 @@
 from flask import render_template,request,redirect,url_for
 from . import main
-from ..requests import get_news_source,get_news,search_news
+from ..requests import get_news_source,get_news,search_news,get_articles
 from ..models import Articles
+from ..models import News
 
 
 # Views
@@ -23,7 +24,7 @@ def index():
     if search_news:
         return redirect(url_for('.search',news_sources=search_news))
     else:
-        return render_template('index.html', id = id ,author= author ,title= title,description = description,publishedAt= publishedAt,content= content,urlToImage= urlToImage )
+        return render_template('index.html', id = id ,author= author,title= title,description = description,publishedAt= publishedAt,content= content,urlToImage= urlToImage )
 
 @main.route('/news/<int:id>')
 def news(id):
@@ -34,7 +35,7 @@ def news(id):
     news = get_news_source(id)
     title = f'{news.title}'
     
-    return render_template('news.html',title = title,news = movie) 
+    return render_template('index.html',title = title,news = movie) 
 
 
 @main.route('/search/<news_name>')

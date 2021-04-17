@@ -14,13 +14,27 @@ class News:
 
 class Articles:
 
-    all_articles = []
+    articles_list = []
 
-    def __init__(self,news_id,name,urlToImage, url):
+    def __init__(self, source,news_id,author, title,descripton,urlToImage, url):
         self.news_id = news_id
-        self.name = name
         self.urlToImage = urlToImage
         self.url = url
+        self.source = source
+        self.author = author
+        self.description = description
+        self.title = title
+    
+    @classmethod
+    def get_articles (cls,id):
+        reponse[]
+
+        for articles in cls.articles_list:
+            if articles.news_id==id:
+                response.append(articles)
+        return response
+        
+
 
   
     
