@@ -1,10 +1,7 @@
 from flask import render_template,request,redirect,url_for
 from . import main
-from ..request import get_news_source,get_news,search_news
+from ..requests import get_news_source,get_news,search_news
 from ..models import Articles
-
-#Review = reviews.Review
-
 
 
 # Views
