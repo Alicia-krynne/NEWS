@@ -1,8 +1,7 @@
 from flask import render_template,request,redirect,url_for
 from . import main
-from ..request import get_movies,get_movie,search_movie
-from .forms import ReviewForm
-from ..models import Review
+from ..request import get_news_source,get_news,search_news
+from ..models import Articles
 
 #Review = reviews.Review
 
@@ -18,56 +17,40 @@ def index():
     '''
 
 
-    # Getting popular movie
-    popular_movies = get_movies('popular')
-    upcoming_movie = get_movies('upcoming')
-    now_showing_movie = get_movies('now_playing')
-    title = 'Home - Welcome to The best Movie Review Website Online'
+    # Getting  news sources 
+  news_sources = get_news_source('sources')
+    
 
-    search_movie = request.args.get('movie_query')
+    search_news = request.args.get('news_query')
 
-    if search_movie:
-        return redirect(url_for('.search',movie_name=search_movie))
+    if search_news:
+        return redirect(url_for('.search',news_sources=search_news))
     else:
-        return render_template('index.html', title = title, popular = popular_movies, upcoming = upcoming_movie, now_showing = now_showing_movie )
+        return render_template('index.html', id = id ,author= author ,title= title,description = description,publishedAt= publishedAt,content= content,urlToImage= urlToImage )
 
-@main.route('/movie/<int:id>')
-def movie(id):
+@main.route('/news/<int:id>')
+def news(id):
 
     '''
-    View movie page function that returns the movie details page and its data
+    View news page function that returns the  news   sources 
     '''
-    movie = get_movie(id)
-    title = f'{movie.title}'
-    reviews = Review.get_reviews(movie.id)
+    news = get_news_source(id)
+    title = f'{news.title}'
+    
+    return render_template('news.html',title = title,news = movie) 
 
-    return render_template('movie.html',title = title,movie = movie,reviews = reviews) 
 
-
-@main.route('/search/<movie_name>')
-def search(movie_name):
+@main.route('/search/<news_name>')
+def search(news_name):
     '''
     View function to display the search results
     '''
-    movie_name_list = movie_name.split(" ")
-    movie_name_format = "+".join(movie_name_list)
-    searched_movies = search_movie(movie_name_format)
-    title = f'search results for {movie_name}'
-    return render_template('search.html',movies = searched_movies)
+    news_list = news_name.split(" ")
+    news_name_format = "+".join(news_list)
+    searched_news = search_news(news_name_format)
+    title = f'search results for {news_name}'
+    return render_template('search.html',news = searched_news)
 
-@main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
-def new_review(id):
-    form = ReviewForm()
-    movie = get_movie(id)
 
-    if form.validate_on_submit():
-        title = form.title.data
-        review = form.review.data
-        new_review = Review(movie.id,title,movie.poster,review)
-        new_review.save_review()
-        return redirect(url_for('.movie',id = movie.id ))
-
-    title = f'{movie.title} review'
-    return render_template('new_review.html',title = title, review_form=form, movie=movie) 
 
 

@@ -14,7 +14,7 @@ def configure_request(app):
 
     
 
-def get_news(source):
+def get_news_source(source):
     '''
     Function that gets the json response to our url request
     '''
