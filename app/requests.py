@@ -149,7 +149,7 @@ def process_results(articles_list):
         articles_object = Articles(source,news_id,author, title,descripton,urlToImage, url)
 
         if poster:
-            news_object = news(id,name,author,description,publishedAt,urlToImage,content)
+            news_object =   News(id,name,author,description,publishedAt,urlToImage,content)
             news_results.append(news_object)
 
     return articles_results
