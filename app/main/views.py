@@ -1,41 +1,36 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template,redirect,url_for
 from . import main
-from ..requests import get_news_source,get_news,search_news,get_articles
-from ..models import Articles
+from ..requests import get_news,search_news,get_articles
+from ..models import Articles 
 from ..models import News
 
 
 # Views
 
 @main.route('/')
-def index():
+def news():
 
     '''
     View root page function that returns the index page and its data
     '''
+    id = get_news ('id')
+    business = get_news('business')
+    sports = get_news('sports')
+    science = get_news('science')
+    entertainment =get_news('entertainment')
 
+    return render_template('index.html', id = id ,business = business,sports =sports,science = science,entertainment= entertainment)
 
-    # Getting  news sources 
-  news_sources = get_news_source('sources')
-    
-
-    search_news = request.args.get('news_query')
-
-    if search_news:
-        return redirect(url_for('.search',news_sources=search_news))
-    else:
-        return render_template('index.html', id = id ,author= author,title= title,description = description,publishedAt= publishedAt,content= content,urlToImage= urlToImage )
-
-@main.route('/news/<int:id>')
-def news(id):
+@main.route('/articles/<news:id>')
+def articles(news_id):
 
     '''
-    View news page function that returns the  news   sources 
+    View news page function that returns the  news    articles
     '''
-    news = get_news_source(id)
-    title = f'{news.title}'
+    articles = get_articles(id)
+    title = f'{news.id}'
     
-    return render_template('index.html',title = title,news = movie) 
+    return render_template('news.html',id = id,news =news) 
 
 
 @main.route('/search/<news_name>')
