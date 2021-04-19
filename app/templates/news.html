@@ -6,14 +6,29 @@
 
 
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 posterPath">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+            <h1>{{name}}</h1>
         </div>
 
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 movie-details">
-            <h3>{{ news.title }}</h3>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+            {%for item in articles%}
 
+        <div class="col-sm-10">
+            <div class="img-box">
+                <a href= {{item.url}} target="balnk">
+                    <img class ="img" source= "{{urlToImage}}">
+                </a>
+            </div>
+            <div class="news">
+                <h4 class="text-bold"> {{item.title}}</h4>
+                <p> Posted by {{item.author}}</p>
+                <p> {{item.description}}-----------------
+                    <a href ={{item.url}} target="_blank"> <button type="button" class="btn btn-outline-primary">see article</button></a>
+                </p>
+                <hr>
+            </div>
         </div>
-    </div>
+    </div>    
     
 </div>
 {% endblock %}

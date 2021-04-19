@@ -1,5 +1,5 @@
 import urllib.request,json
-from .models import News
+from .models import News,Articles
 
 # Getting api key
 api_key = None
@@ -46,13 +46,16 @@ def process_results(news_list):
     Returns :
         news_results: A list of news objects
     '''
-    news_results = []  #  add  the  categories
+    news_results = []  
     for news_item in news_list:
         id = news_item.get('id')
-        sports= news_item.get('sports')
-        science = news_item.get('science')
-        business = news_item.get('business')
-        entertainment = news_item.get('entertainment')
+        name = news_item.get('name')
+        description= news_item.get('description')
+        category = news_item.get('category')
+        url = news_item.get('url')
+        language  = news_item.get('language')
+        country = news_item.get('country')
+        
 
         if poster:
             news_object = news(id,name,author,description,publishedAt,urlToImage,content)
@@ -119,7 +122,6 @@ def process_results(articles_list):
         news_id = news_id.get('id')
         urlToImage = urlToImage.get('urlToImage')
         url = url.get('url')
-        source = source.get('source')
         author = author.get('author')
         description = description.get('description')
         title = title.get('title')
@@ -127,7 +129,7 @@ def process_results(articles_list):
         articles_object = Articles(source,news_id,author, title,descripton,urlToImage, url)
 
         if poster:
-            news_object =   News(id,name,author,description,publishedAt,urlToImage,content)
+            news_object =   News(id,business,science,entertainment,sports)
             news_results.append(news_object)
 
     return articles_results

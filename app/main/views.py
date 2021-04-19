@@ -13,13 +13,15 @@ def news():
     '''
     View root page function that returns the index page and its data
     '''
-    id = get_news ('id')
+   
     business = get_news('business')
     sports = get_news('sports')
     science = get_news('science')
-    entertainment =get_news('entertainment')
+    entertainment = get_news('entertainment')
+    
+    
 
-    return render_template('index.html', id = id ,business = business,sports =sports,science = science,entertainment= entertainment)
+    return render_template('index.html' ,business = business,sports =sports,science = science,entertainment= entertainment)
 
 @main.route('/articles/<news:id>')
 def articles(news_id):
@@ -30,7 +32,7 @@ def articles(news_id):
     articles = get_articles(id)
     title = f'{news.id}'
     
-    return render_template('news.html',id = id,news =news) 
+    return render_template('news.html',news =news) 
 
 
 @main.route('/search/<news_name>')
