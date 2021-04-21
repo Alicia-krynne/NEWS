@@ -1,6 +1,7 @@
 import urllib.request,json
 from .models import News,Articles
 
+
 # Getting api key
 api_key = None
 
@@ -32,6 +33,7 @@ def get_news(category):
             news_results_list = get_news_source_response['results']
             news_results = process_results(news_source_results_list)
 
+    #import pdb; pdb.set_trace() #python  debugger
 
     return news_results
 
@@ -58,29 +60,11 @@ def process_results(news_list):
         
 
         if poster:
-            news_object = news(id,name,author,description,publishedAt,urlToImage,content)
+            news_object = News(id,name,description,category,url,language,country)
             news_results.append(news_object)
 
     return news_results
 
-
- 
-def search_news(news_name):
-    
-
-    search_news_url = 'https://newsapi.org/v2/sources?apiKey={}'.format(api_key,news)
-    with urllib.request.urlopen(search_news_url) as url:
-        search_news_data = url.read()
-        search_news_response = json.loads(search_news_data)
-
-        search_news_results = None
-
-        if search_news_response['results']:
-            search_news_list = search_news_response['results']
-            search_news_results = process_results(search_news_list)
-
-
-    return search_news_results
 
 
 def get_articles(category):
