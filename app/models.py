@@ -17,7 +17,7 @@ class Articles:
 
     articles_list = []
 
-    def __init__(self, news_id,author, title,descripton,urlToImage, url ,publishedAt):
+    def __init__(self, news_id,author, title,description,urlToImage, url ,publishedAt):
         self.news_id = news_id
         self.urlToImage = urlToImage
         self.url = url

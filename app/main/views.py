@@ -14,10 +14,10 @@ def index():
     View root page function that returns the index page and its data
     '''
    
-    business = get_news('business')
-    sports = get_news('sports')
-    science = get_news('science')
-    entertainment = get_news('entertainment')
+    business = get_articles('business')
+    sports = get_articles('sports')
+    science = get_articles('science')
+    entertainment = get_articles('entertainment')
     
     
 
@@ -30,7 +30,7 @@ def articles(id):
     View news page function that returns the  news    articles
     '''
     articles = get_articles(id)
-    title = f'{news.id}'
+    title = f'{id}'
     
     return render_template('news.html', title = title,articles =articles) 
 

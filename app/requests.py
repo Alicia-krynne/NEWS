@@ -1,6 +1,9 @@
 import urllib.request,json
 from .models import News,Articles
+#import urllib.parse
 
+#query = '/'
+#urllib.parse.quote('/',safe='')
 
 # Getting api key
 api_key = None
@@ -16,11 +19,11 @@ def configure_request(app):
     articles_url =app.config ['ARTICLES_BASE_URL']
 
 
-def get_news(category):
+def get_news():
     '''
     Function that gets the json response to our url request
     '''
-    get_news_url = base_url.format(id,api_key)
+    get_news_url = base_url.format(api_key)
     print(get_news_url)
 
     with urllib.request.urlopen(get_news_url) as url:
@@ -30,8 +33,8 @@ def get_news(category):
         news_results = None
 
         if get_news_source_response['results']:
-            news_results_list = get_news_source_response['results']
-            news_results = process_results(news_source_results_list)
+            news_results_list = get_news_response['results']
+            news_results = process_results(news_results_list)
 
     #import pdb; pdb.set_trace() #python  debugger
 
@@ -57,12 +60,20 @@ def process_results(news_list):
         url = news_item.get('url')
         language  = news_item.get('language')
         country = news_item.get('country')
-        
+    
+        if urlToImage:
 
-        if poster:
-            news_object = News(id,name,description,category,url,language,country)
+            news_object = News(
+                author,
+                title,
+                description,
+                urlToImage,
+                publishedAt,
+                publishedTime,
+                name,
+                
+            )
             news_results.append(news_object)
-
     return news_results
 
 
@@ -71,7 +82,7 @@ def get_articles(category):
     '''
     Function that gets the json response to our url request
     '''
-    get_articles_url = articles_url.format(id,api_key)
+    get_articles_url = articles_url.format(category,api_key)
 
     with urllib.request.urlopen(get_articles_url) as url:
         get_articles_data = url.read()
@@ -79,15 +90,17 @@ def get_articles(category):
 
         articles_results = None
 
-        if get_articles:
-            news_id = news_id.get('id')
-            urlToImage = urlToImage.get('urlToImage')
-            url = url.get('url')
-            author = author.get('author')
-            description = description.get('description')
-            title = title.get('title')
+        #if get_articles:
+            #news_id = news_id.get('news_id')
+            #urlToImage = urlToImage.get('urlToImage')
+            #url = url.get('url')
+            #author = author.get('author')
+            #description = description.get('description')
+            #title = title.get('title')
+        if get_articles_response["articles"]:
+           articles_results_list = get_articles_response["articles"]
 
-        articles_object = Articles(source,news_id,author, title,descripton,urlToImage, url)
+           articles_results = process_results(articles_results_list)
 
 
     return articles_results
@@ -101,19 +114,19 @@ def process_results(articles_list):
     Returns :
         news_results: A list of news objects
     '''
-    articles_list= []
+    articles_results= []
     for articles_item in articles_list:
-        news_id = news_id.get('id')
-        urlToImage = urlToImage.get('urlToImage')
-        url = url.get('url')
-        author = author.get('author')
-        description = description.get('description')
-        title = title.get('title')
+        id = articles_item.get('id')
+        urlToImage = articles_item.get('urlToImage')
+        url = articles_item.get('url')
+        author = articles_item.get('author')
+        description = articles_item.get('description')
+        title = articles_item.get('title')
+        publishedAt= articles_item.get('publishedAt')
 
-        articles_object = Articles(source,news_id,author, title,descripton,urlToImage, url)
-
-        if poster:
-            news_object =   News(id,business,science,entertainment,sports)
-            news_results.append(news_object)
-
+        if urlToImage:
+            articles_object = Articles(id,author,title,description,urlToImage, url,publishedAt)
+            articles_results.append(articles_object)
+            
+            
     return articles_results
