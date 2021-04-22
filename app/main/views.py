@@ -23,7 +23,7 @@ def index():
 
     return render_template('index.html' ,business = business,sports =sports,science = science,entertainment= entertainment)
 
-@main.route('/articles/<id>')
+@main.route('/articles')
 def articles(id):
 
     '''
