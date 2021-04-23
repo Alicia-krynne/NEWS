@@ -1,12 +1,13 @@
 **NEWS -APP**
 This APP enebles the user to  view/read news  from  various sources.
 
+
 **AUTHOR**
 [Alicia-krynne]https://github.com/Alicia-krynne
 
 
 **HOW TO ACCESS THE APP**
-clone in to my repo provided at :https://github.com/Alicia-krynne/Password-locker.git then navigate to the  about  section  on the left  and  click the  link  provided. it  redirect  you  to the heroku  site  where the  app is  deployed.
+Clone in to my repo provided at :https://github.com/Alicia-krynne/Password-locker.git then navigate to the  about  section  on the left  and  click the  link  provided. it  redirect  you  to the heroku  site  where the  app is  deployed.
 
 **LANGUAGES USED TO MAKE THE APP**
 Python This is the main language in this project to create the methods and funtions needed.
@@ -44,4 +45,4 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. Alicia-krynne
 
 **CONTACTS**
-reach me via email on :alicakrynne@outlook.com for comment  or  collaborations .
+reach me via email on :alicakrynne@outlook.com for comment  or  collaborations. 
