@@ -1,5 +1,11 @@
 .container{
   float: right;
   max-width: 100%;
+  display: grid;
  
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: 80px 200px;
 }
